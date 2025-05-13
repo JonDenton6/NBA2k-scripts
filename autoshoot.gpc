@@ -1,0 +1,19 @@
+// NBA 2K Auto Green Shot Script with LED Indicator (Xbox Version)
+// Works on Cronus Zen — adjust release_time as needed
+
+define SHOOT_BTN = XB1_RT;     // RT = Shoot button for Xbox
+int release_time = 510;        // Adjust timing for your jumper
+
+main {
+    if (get_val(SHOOT_BTN)) {
+        combo_run(AutoGreenShot);
+    }
+}
+
+combo AutoGreenShot {
+    set_led(LED_1, 100);       // LED ON while timing
+    wait(release_time);        // Hold RT for set time
+    set_val(SHOOT_BTN, 0);     // Release RT to simulate shot release
+    wait(40);
+    set_led(LED_1, 0);         // LED OFF
+}
